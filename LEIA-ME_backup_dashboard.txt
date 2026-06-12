@@ -1,0 +1,21 @@
+﻿Backup completo do Dashboard de Produtividade
+Gerado em: 11/06/2026 14:42
+Origem: C:\Users\marcus.galvao\Desktop\Trabalho\Indicador produtividade dashboard
+
+Arquivos copiados:
+- br-all.geo.json
+- brasil-mapa-grafico-geral-pais.jpg
+- dashboard_produtividade_completo.html
+- INICIAR_DASHBOARD_REDE.bat
+- mapa-brasil-uf-final.png
+- mapa-brasil-uf-neon.png
+- mapa-brasil-uf-neon-v2.png
+- mapa-brasil-uf-neon-v3.png
+
+
+Arquivo principal para abrir:
+- dashboard_produtividade_completo.html
+
+Arquivo .bat encontrado/copiadO:
+- INICIAR_DASHBOARD_REDE.bat
+

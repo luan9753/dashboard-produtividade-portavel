@@ -1,0 +1,5 @@
+*.bak
+*.tmp
+__pycache__/
+_extracted_*
+extract_group_render.py
