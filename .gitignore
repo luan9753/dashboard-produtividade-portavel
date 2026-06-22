@@ -3,3 +3,7 @@
 __pycache__/
 _extracted_*
 extract_group_render.py
+
+# Planilhas e exports gerados localmente (não versionar)
+*.xlsx
+*.csv

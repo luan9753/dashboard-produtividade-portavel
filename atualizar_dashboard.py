@@ -11,11 +11,30 @@ from zoneinfo import ZoneInfo
 
 import pandas as pd
 
-GERAR_DIR = Path(
-    r"C:\Users\luan.machado\Desktop\Área de Trabalho\WorkSpace\Relatórios - Caixa Nova\Indicador de produtividade"
+def _primeiro_existente(*candidatos: Path) -> Path:
+    for path in candidatos:
+        if path.exists():
+            return path
+    return candidatos[0]
+
+
+GERAR_DIR = _primeiro_existente(
+    Path(
+        r"C:\Users\luan.machado\Desktop\Área de Trabalho\WorkSpace\Relatórios - Caixa Nova\Indicador de produtividade"
+    ),
+    Path.home()
+    / "Desktop/Área de Trabalho/WorkSpace/Relatórios - Caixa Nova/Indicador de produtividade",
+    Path.home()
+    / "Desktop/WorkSpace/Relatórios - Caixa Nova/Indicador de produtividade",
 )
-BACKUP_ORIGEM = Path(
-    r"C:\Users\luan.machado\Desktop\Área de Trabalho\WorkSpace\Indicador produtividade dashboard\dashboard_produtividade_completo.html"
+BACKUP_ORIGEM = _primeiro_existente(
+    Path(
+        r"C:\Users\luan.machado\Desktop\Área de Trabalho\WorkSpace\Indicador produtividade dashboard\dashboard_produtividade_completo.html"
+    ),
+    Path.home()
+    / "Desktop/Área de Trabalho/WorkSpace/Indicador produtividade dashboard/dashboard_produtividade_completo.html",
+    Path.home()
+    / "Desktop/WorkSpace/Indicador produtividade dashboard/dashboard_produtividade_completo.html",
 )
 sys.path.insert(0, str(GERAR_DIR))
 import gerar_indicador as gi  # noqa: E402

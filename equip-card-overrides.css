@@ -16,7 +16,11 @@ main {
   flex: none !important;
   min-height: auto !important;
   overflow: visible !important;
-  grid-template-rows: auto auto !important;
+  position: static !important;
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  grid-template-rows: repeat(3, minmax(170px, auto)) !important;
+  gap: 8px !important;
+  align-items: stretch !important;
 }
 @media (min-width: 2200px) {
   main {
@@ -24,7 +28,65 @@ main {
     padding-bottom: 36px !important;
   }
   .grid {
-    grid-template-rows: auto auto !important;
+    grid-template-rows: repeat(3, minmax(220px, auto)) !important;
+    gap: 12px !important;
+  }
+}
+
+/* Coluna direita — grid em vez de position:absolute (evita sobreposição) */
+.grid > .panel:nth-child(6),
+.grid > .panel:nth-child(5),
+.grid > .panel:nth-child(4) {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  width: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  grid-column: 10 / 13 !important;
+  margin: 0 !important;
+  z-index: auto !important;
+}
+.grid > .panel:nth-child(6) {
+  grid-row: 1 !important;
+}
+.grid > .panel:nth-child(5) {
+  grid-row: 2 !important;
+}
+.grid > .panel:nth-child(4) {
+  grid-row: 3 !important;
+}
+.grid > .panel:nth-child(2) {
+  grid-column: 1 / 4 !important;
+  grid-row: 1 !important;
+}
+.grid > .panel:nth-child(8) {
+  grid-column: 1 / 4 !important;
+  grid-row: 2 !important;
+}
+.grid > .panel:nth-child(1) {
+  grid-column: 1 / 4 !important;
+  grid-row: 3 !important;
+}
+.grid > .panel:nth-child(7) {
+  grid-column: 4 / 10 !important;
+  grid-row: 1 / 4 !important;
+}
+.grid > .panel:nth-child(3) {
+  display: none !important;
+}
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: none !important;
+  }
+  .grid > .panel:nth-child(n) {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+  }
+  .grid > .panel:nth-child(3) {
+    display: flex !important;
   }
 }
 
@@ -246,6 +308,114 @@ main {
   #panel-month-pending .bar-track,
   #panel-sla-month .bar-track,
   #panel-thermal-pending .bar-track {
+    height: 12px !important;
+  }
+}
+
+/* Card Em trânsito por equipamento — corrige linhas colapsadas em flex row */
+.grid > .panel:nth-child(8) {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-self: stretch !important;
+  min-height: 170px !important;
+  height: auto !important;
+  max-height: none !important;
+  margin-top: 0 !important;
+  padding: 10px 12px 12px !important;
+  overflow: hidden !important;
+}
+.grid > .panel:nth-child(8) h2 {
+  font-size: 16px !important;
+  line-height: 1.2 !important;
+  margin: 0 0 10px !important;
+  padding: 0 0 8px !important;
+  color: #f5f9ff !important;
+  font-weight: 900 !important;
+  white-space: nowrap !important;
+  display: block !important;
+  overflow: visible !important;
+  -webkit-line-clamp: unset !important;
+  border-bottom: 1px solid rgba(130, 190, 255, 0.35) !important;
+}
+.grid > .panel:nth-child(8) .scroll {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  gap: 7px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: auto !important;
+  padding: 0 !important;
+}
+.grid > .panel:nth-child(8) .bar-row {
+  display: grid !important;
+  width: 100% !important;
+  flex: 0 0 auto !important;
+  grid-template-columns: minmax(100px, 42%) minmax(80px, 1fr) minmax(52px, 24%) !important;
+  gap: 10px !important;
+  align-items: center !important;
+  min-height: 34px !important;
+  max-height: none !important;
+  padding: 4px 5px !important;
+}
+.grid > .panel:nth-child(8) .bar-label {
+  font-size: 15px !important;
+  line-height: 1.15 !important;
+  color: #f8fbff !important;
+  font-weight: 800 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  align-self: center !important;
+}
+.grid > .panel:nth-child(8) .bar-value {
+  font-size: 16px !important;
+  line-height: 1 !important;
+  color: #fff !important;
+  font-weight: 950 !important;
+  min-width: 52px !important;
+  text-align: right !important;
+  justify-self: end !important;
+  font-variant-numeric: tabular-nums !important;
+}
+.grid > .panel:nth-child(8) .bar-track {
+  height: 10px !important;
+  width: 100% !important;
+  align-self: center !important;
+  background: rgba(4, 18, 36, 0.92) !important;
+  border: 1px solid rgba(90, 160, 230, 0.55) !important;
+}
+.grid > .panel:nth-child(8) .bar-fill {
+  background: linear-gradient(90deg, #1a6fbf, #4db8ff) !important;
+  box-shadow: 0 0 10px rgba(47, 128, 208, 0.5) !important;
+}
+@media (min-width: 2200px) {
+  .grid > .panel:nth-child(8) {
+    min-height: 220px !important;
+    padding: 14px 16px 16px !important;
+  }
+  .grid > .panel:nth-child(8) h2 {
+    font-size: 22px !important;
+    margin-bottom: 12px !important;
+    padding-bottom: 10px !important;
+  }
+  .grid > .panel:nth-child(8) .bar-row {
+    grid-template-columns: minmax(150px, 40%) minmax(120px, 1fr) minmax(78px, 22%) !important;
+    gap: 14px !important;
+    min-height: 42px !important;
+  }
+  .grid > .panel:nth-child(8) .bar-label {
+    font-size: 18px !important;
+  }
+  .grid > .panel:nth-child(8) .bar-value {
+    font-size: 20px !important;
+    min-width: 78px !important;
+  }
+  .grid > .panel:nth-child(8) .bar-track {
     height: 12px !important;
   }
 }
